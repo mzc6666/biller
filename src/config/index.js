@@ -4,12 +4,13 @@
  * @Autor: mzc
  * @Date: 2023-01-12 14:07:18
  * @LastEditors: mzc
- * @LastEditTime: 2023-02-16 11:29:19
+ * @LastEditTime: 2023-02-23 15:58:05
  */
 export const UI_WIDTH = 390;
 
 // export const BASE_URL = 'https://mock.apifox.cn/m1/2058362-0-default';
-export const BASE_URL = 'http://10.0.2.2:8888';
+// export const BASE_URL = 'http://10.0.2.2:8888';
+export const BASE_URL = 'http://49.234.98.161:8888';
 
 export const DEFAULT_TIMEOUT = 4000;
 

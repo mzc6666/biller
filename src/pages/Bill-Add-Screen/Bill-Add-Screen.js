@@ -4,7 +4,7 @@
  * @Autor: mzc
  * @Date: 2023-01-27 18:48:54
  * @LastEditors: mzc
- * @LastEditTime: 2023-02-17 14:13:04
+ * @LastEditTime: 2023-02-23 19:59:43
  */
 import colors from '@/assets/colors';
 import {earnTagGrup, payTagGroup} from '@/config';
@@ -38,23 +38,27 @@ const BillAddScreen = ({navigation}) => {
     setIconGroup(isPayBill ? payTagGroup : earnTagGrup);
   }, [isPayBill]);
 
-  const handleAdd = async () => {
-    try {
-      const result = await addNewBill(
+  const handleAdd =  () => {
+    if (isNaN(Number(money))  || !classify || !title || !description) {
+      console.log("not-suitable")
+      return;
+    } else {
+      addNewBill(
         isPayBill ? 'pay' : 'earn',
         parseFloat(money).toFixed(2),
         classify,
         title,
         description,
-      );
-      dispatch(addBill(result.data.data));
-      navigation.navigate(BILL_SCREENS, {
-        screen: BILL_HISTORY,
-      });
-    } catch (error) {
-      console.log('handleAdd error: ', JSON.stringify(error));
+      ).then(result => {
+        dispatch(addBill(result.data.data));
+        navigation.navigate(BILL_SCREENS, {
+          screen: BILL_HISTORY,
+        });
+      }).catch(error => {
+        console.log('handleAdd error: ', JSON.stringify(error));
+      })
     }
-  };
+    }
   return (
     <>
       <StatusBar backgroundColor={colors['blue']} />

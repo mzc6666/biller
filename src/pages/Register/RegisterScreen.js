@@ -4,7 +4,7 @@
  * @Autor: mzc
  * @Date: 2023-01-12 12:22:14
  * @LastEditors: mzc
- * @LastEditTime: 2023-01-17 23:41:54
+ * @LastEditTime: 2023-02-23 16:09:08
  */
 import React, {useState} from 'react';
 import {
@@ -37,14 +37,18 @@ const RegisterScreen = ({navigation}) => {
       isPasswordFormat(password) &&
       password === confirmPass
     ) {
+      console.log("suitable")
       userRegister(account, password, confirmPass)
         .then(res => {
           if (res.data.status === 'ok') {
             console.log('register', res.data);
             navigation.navigate(LOGIN_SCREEN);
           }
+          console.log("result: ",res.data)
         })
-        .catch(err => {});
+        .catch(err => {
+          console.log("register error: ", err)
+        });
     }
   };
 

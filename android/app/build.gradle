@@ -1,7 +1,8 @@
 apply plugin: "com.android.application"
 
-
+import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -120,8 +121,6 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
-
-
 /**
  * Architectures to build native code for.
  */
@@ -136,14 +135,13 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.biller"
+        applicationId "com.new_bill"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
-        aaptOptions.cruncherEnabled = false
-        aaptOptions.useNewCruncher = false
+
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.
             externalNativeBuild {
@@ -159,7 +157,7 @@ android {
                     cppFlags "-std=c++17"
                     // Make sure this target name is the same you specify inside the
                     // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
-                    targets "biller_appmodules"
+                    targets "new_bill_appmodules"
                     // Fix for windows limit on number of character in file paths and in command lines
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         arguments "NDK_APP_SHORT_COMMANDS=true"

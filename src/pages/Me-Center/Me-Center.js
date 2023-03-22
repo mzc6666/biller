@@ -4,7 +4,7 @@
  * @Autor: mzc
  * @Date: 2023-01-12 23:41:10
  * @LastEditors: mzc
- * @LastEditTime: 2023-02-16 10:46:41
+ * @LastEditTime: 2023-02-23 16:24:28
  */
 import React, {useEffect, useState} from 'react';
 import {
@@ -41,8 +41,8 @@ const MyCenter = ({navigation}) => {
   });
 
   // 退出登录处理
-  const handleExit = () => {
-    clearAllState(); // 清除缓存
+  const handleExit = async () => {
+   await  clearAllState(); // 清除缓存
     dispatch(logout()); // 退出登录
   };
 

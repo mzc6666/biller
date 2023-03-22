@@ -4,7 +4,7 @@
  * @Autor: mzc
  * @Date: 2023-01-26 22:39:36
  * @LastEditors: mzc
- * @LastEditTime: 2023-02-16 11:24:16
+ * @LastEditTime: 2023-02-23 20:07:07
  */
 import colors from '@/assets/colors';
 import React, {useEffect, useState} from 'react';
@@ -54,37 +54,30 @@ const BillEditor = ({navigation, route}) => {
   /**
    * 修改账单回调函数
    */
-  const changeBillCallback = async () => {
-    // const {id, time, month, day, year, ...infoObj} = bill;
-    // const newInfoObj = Object.assign(infoObj, {
-    //   tag: classify,
-    //   type: isPayBill ? 'pay' : 'earn',
-    //   money: parseFloat(money).toFixed(2),
-    //   name: title,
-    //   description,
-    // });
-    try {
-      const result = await changeBill(bill.id, {
+  const changeBillCallback =  () => {
+    if (!classify || isNaN(Number(money)) || !title || !description) {
+      return;
+    }
+    changeBill(bill.id, {
         tag: classify,
         type: isPayBill ? 'pay' : 'earn',
         money: parseFloat(money).toFixed(2),
         name: title,
         description,
-      });
-      console.log('result: ', JSON.stringify(result.data.data, null, 2));
-      dispatch(
-        setDetailBill({
-          index1,
-          index2,
-          bill: result.data.data,
-        }),
-      );
-      navigation.navigate(BILL_SCREENS, {
-        screen: BILL_HISTORY,
-      });
-    } catch (error) {
-      console.log('changeBillCallback error: ', error);
-    }
+      }).then(result => {
+        dispatch(
+          setDetailBill({
+            index1,
+            index2,
+            bill: result.data.data,
+          }),
+        );
+        navigation.navigate(BILL_SCREENS, {
+          screen: BILL_HISTORY,
+        });
+      }).catch(error => {
+        console.log('changeBillCallback error: ', error);
+      })
   };
   return (
     <>

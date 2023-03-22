@@ -4,7 +4,7 @@
  * @Autor: mzc
  * @Date: 2023-01-12 11:12:33
  * @LastEditors: mzc
- * @LastEditTime: 2023-01-15 16:09:51
+ * @LastEditTime: 2023-02-23 19:04:26
  */
 import React, {useState} from 'react';
 import {
@@ -28,7 +28,6 @@ const LoginScreen = ({navigation}) => {
 
   const [account, setAccount] = useState(''); // 账号
   const [password, setPassword] = useState(''); //密码
-
   /**
    * 登录处理函数
    */

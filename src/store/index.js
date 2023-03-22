@@ -4,7 +4,7 @@
  * @Autor: mzc
  * @Date: 2023-01-12 13:03:13
  * @LastEditors: mzc
- * @LastEditTime: 2023-02-15 20:30:20
+ * @LastEditTime: 2023-02-23 16:23:32
  */
 import {
   combineReducers,
@@ -61,6 +61,6 @@ const store = configureStore({
 
 export const persist = persistStore(store);
 
-export const clearAllState = () => void persist.purge();
+export const clearAllState = async () => await persist.purge();
 
 export default store;
